@@ -37,6 +37,12 @@
   padding: 2em;
 }
 
+nav a.active {
+  text-decoration: underline;
+  font-weight: 700;
+  color: rgb(12, 122, 85);
+}
+
 .read-the-docs {
   color: #888;
 }
