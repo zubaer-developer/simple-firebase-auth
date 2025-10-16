@@ -1,9 +1,40 @@
-import React from "react";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React, { useState } from "react";
+import { auth } from "../../Firebase/Firebase";
+
+const googleProvider = new GoogleAuthProvider();
 
 const Login = () => {
+  const [user, setUser] = useState(null);
+
+  const handleSigninWithGoogle = () => {
+    console.log("button clicked");
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        console.log(result);
+        console.log(result.user);
+
+        setUser(result.user);
+        console.log(user?.displayName);
+        console.log(user.email);
+        console.log(user.photoURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <h2>This is Login Page.</h2>
+      <button onClick={handleSigninWithGoogle}>Sign in with Google</button>
+      {user && (
+        <div>
+          <h3>Name: {user.displayName}</h3>
+          <h4>Email: {user.email}</h4>
+          <img src={user.photoURL} alt="" />
+        </div>
+      )}
     </div>
   );
 };
