@@ -36,13 +36,24 @@ const Login = () => {
 
   return (
     <div>
-      <h2>This is Login Page.</h2>
-      <button className="card" onClick={handleSigninWithGoogle}>
+      <h2>Please Log in</h2>
+      {/* <button className="card" onClick={handleSigninWithGoogle}>
         Sign in with Google
       </button>
       <button className="card" onClick={handleSignOut}>
         SignOut
-      </button>
+      </button> */}
+
+      {user ? (
+        <button className="card" onClick={handleSignOut}>
+          SignOut
+        </button>
+      ) : (
+        <button className="card" onClick={handleSigninWithGoogle}>
+          Sign in with Google
+        </button>
+      )}
+
       {user && (
         <div>
           <h3>Name: {user.displayName}</h3>
